@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite_estudo/page/home_page.dart';
+import 'package:sqflite_estudo/provider/appBarProvider.dart';
 import 'package:sqflite_estudo/provider/cliente_provider.dart';
 
 main() {
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ClienteProvider()),
+        ChangeNotifierProvider(create: (context) => AppBarProvider()),
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,

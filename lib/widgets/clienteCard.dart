@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sqflite_estudo/helpers/db.dart';
 import 'package:sqflite_estudo/models/cliente_model.dart';
 import '../page/cliente_page.dart';
+import '../provider/appBarProvider.dart';
 
 class ClienteCard extends StatefulWidget {
   final Cliente cliente;
@@ -15,6 +17,7 @@ class _ClienteCardState extends State<ClienteCard> {
   final DB db = DB.intance;
   @override
   Widget build(BuildContext context) {
+    final appBarprovider = Provider.of<AppBarProvider>(context, listen: false);
     return Card(
       margin: const EdgeInsets.only(top: 12, left: 15, right: 15),
       elevation: 2,
@@ -51,10 +54,7 @@ class _ClienteCardState extends State<ClienteCard> {
               )),
               IconButton(
                   onPressed: () {
-                    context
-                        .findAncestorStateOfType<ClientePageState>()!
-                        .acctiveNewAppBar();
-
+                    appBarprovider.setTrue();
                     appbarcliente = widget.cliente;
                   },
                   icon: const Icon(Icons.more_vert)),

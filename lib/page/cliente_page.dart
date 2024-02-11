@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite_estudo/helpers/db.dart';
 import 'package:sqflite_estudo/models/cliente_model.dart';
-import 'package:sqflite_estudo/page/edit_cliente.dart';
+import 'package:sqflite_estudo/provider/appBarProvider.dart';
 import 'package:sqflite_estudo/provider/cliente_provider.dart';
+import 'package:sqflite_estudo/widgets/userAppBar.dart';
 import '../widgets/clienteCard.dart';
 
 class ClientePage extends StatefulWidget {
@@ -13,7 +14,6 @@ class ClientePage extends StatefulWidget {
   State<ClientePage> createState() => ClientePageState();
 }
 
-bool showNewAppBar = false;
 Cliente? appbarcliente;
 
 class ClientePageState extends State<ClientePage> {
@@ -21,11 +21,14 @@ class ClientePageState extends State<ClientePage> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ClienteProvider>(context, listen: false);
+    final clienteprovider =
+        Provider.of<ClienteProvider>(context, listen: false);
+    final appBarprovider = Provider.of<AppBarProvider>(context);
     return Scaffold(
-      appBar: showNewAppBar ? newAppBar(context) : defaultAppBar(),
+      appBar:
+          appBarprovider.showNewAppBar ? userAppBar(context) : defaultAppBar(),
       body: FutureBuilder(
-          future: provider.getClientes(),
+          future: clienteprovider.getClientes(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
@@ -53,52 +56,13 @@ class ClientePageState extends State<ClientePage> {
   }
 
   appBarCliente(Cliente? appBarCliente) {
-    setState(() {
-      appbarcliente!.nome = appBarCliente!.nome;
-      appbarcliente!.idade = appbarcliente!.idade;
-    });
-  }
-
-  acctiveNewAppBar() {
-    setState(() {
-      showNewAppBar = true;
-    });
-  }
-
-  newAppBar(context) {
-    return AppBar(
-      title: Text(appbarcliente!.nome),
-      leading: IconButton(
-          onPressed: () {
-            setState(() {
-              showNewAppBar = false;
-            });
-          },
-          icon: Icon(Icons.arrow_back)),
-      actions: [
-        IconButton(
-            onPressed: () {
-              setState(() {
-                db.deleteCliente(appbarcliente!);
-                showNewAppBar = false;
-              });
-            },
-            icon: const Icon(Icons.delete)),
-        IconButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) => EditCliente(cliente: appbarcliente!)));
-            },
-            icon: const Icon(Icons.edit))
-      ],
-    );
+    appbarcliente!.nome = appBarCliente!.nome;
+    appbarcliente!.idade = appbarcliente!.idade;
   }
 
   defaultAppBar() {
     return AppBar(
-      title: Text("Cliente"),
+      title: const Text("Cliente"),
     );
   }
 }
