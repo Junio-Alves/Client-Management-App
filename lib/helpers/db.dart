@@ -1,10 +1,10 @@
-import 'package:flutter/foundation.dart';
+import 'dart:developer';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:sqflite_estudo/models/cliente_model.dart';
 
 //tentativa falha de usar o provider, junio do futuro irá resolver
-class DB extends ChangeNotifier {
+class DB {
   DB._();
   static final DB intance = DB._();
   static Database? _database;
@@ -37,16 +37,20 @@ class DB extends ChangeNotifier {
     )
   ''';
 
+  //////////////////////////////////////////////////////////////////
+
+  //insert
   insertCliente(Cliente cliente) async {
     try {
       final Database db = await database;
       await db.insert("cliente", cliente.toMap());
     } catch (ex) {
-      print(ex);
+      log(ex.toString());
       return;
     }
   }
 
+  //getClientes
   Future<List<Cliente>> getCliente() async {
     final Database db = await database;
     final List<Map<String, dynamic>> maps = await db.query("cliente");
@@ -55,6 +59,7 @@ class DB extends ChangeNotifier {
     });
   }
 
+  //update
   updateCliente(Cliente cliente, int id) async {
     final Database db = await database;
     db.update(
@@ -65,6 +70,7 @@ class DB extends ChangeNotifier {
     );
   }
 
+  //delete
   deleteCliente(Cliente cliente) async {
     final Database db = await database;
     db.delete(

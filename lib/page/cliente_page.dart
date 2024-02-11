@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sqflite_estudo/helpers/db.dart';
 import 'package:sqflite_estudo/models/cliente_model.dart';
 import 'package:sqflite_estudo/page/edit_cliente.dart';
+import 'package:sqflite_estudo/provider/cliente_provider.dart';
 import '../widgets/clienteCard.dart';
 
 class ClientePage extends StatefulWidget {
@@ -16,12 +18,14 @@ Cliente? appbarcliente;
 
 class ClientePageState extends State<ClientePage> {
   final DB db = DB.intance;
+
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ClienteProvider>(context, listen: false);
     return Scaffold(
       appBar: showNewAppBar ? newAppBar(context) : defaultAppBar(),
-      body: FutureBuilder<List<Cliente>>(
-          future: db.getCliente(),
+      body: FutureBuilder(
+          future: provider.getClientes(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
@@ -32,13 +36,17 @@ class ClientePageState extends State<ClientePage> {
                 child: Text("Error: {$snapshot.error}"),
               );
             } else {
-              List<Cliente>? clientes = snapshot.data;
-              return ListView.builder(
-                  itemCount: clientes?.length ?? 0,
-                  itemBuilder: (context, index) {
-                    Cliente cliente = clientes![index];
-                    return ClienteCard(cliente: cliente);
-                  });
+              return Consumer<ClienteProvider>(
+                builder:
+                    (BuildContext context, providerClientes, Widget? child) {
+                  return ListView.builder(
+                      itemCount: providerClientes.cliente.length,
+                      itemBuilder: (context, index) {
+                        Cliente cliente = providerClientes.cliente[index];
+                        return ClienteCard(cliente: cliente);
+                      });
+                },
+              );
             }
           }),
     );
