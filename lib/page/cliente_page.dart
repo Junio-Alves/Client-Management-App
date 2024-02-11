@@ -14,8 +14,6 @@ class ClientePage extends StatefulWidget {
   State<ClientePage> createState() => ClientePageState();
 }
 
-Cliente? appbarcliente;
-
 class ClientePageState extends State<ClientePage> {
   final DB db = DB.intance;
 

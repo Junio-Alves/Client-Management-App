@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sqflite_estudo/helpers/db.dart';
 import 'package:sqflite_estudo/models/cliente_model.dart';
-import 'package:sqflite_estudo/page/cliente_page.dart';
+import 'package:sqflite_estudo/provider/cliente_provider.dart';
+import 'package:sqflite_estudo/widgets/userAppBar.dart';
 
 class EditCliente extends StatefulWidget {
   final Cliente cliente;
@@ -16,7 +18,6 @@ class _EditClienteState extends State<EditCliente> {
   final _idade = TextEditingController();
   final DB db = DB.intance;
   final _formkey = GlobalKey<FormState>();
-  late Cliente updatedCliente;
 
   @override
   void initState() {
@@ -27,61 +28,59 @@ class _EditClienteState extends State<EditCliente> {
 
   @override
   Widget build(BuildContext context) {
-    updatecliente() {
-      if (mounted) {
-        context
-            .findAncestorStateOfType<ClientePageState>()!
-            .appBarCliente(updatedCliente);
-      }
-    }
-
+    final clienteprovider =
+        Provider.of<ClienteProvider>(context, listen: false);
+    String appBartitle = widget.cliente.nome;
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.cliente.nome),
+        title: Text(appBartitle),
       ),
       body: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Form(
-              key: _formkey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    controller: _nome,
-                    decoration: const InputDecoration(labelText: "Nome"),
-                    validator: (nome) {
-                      if (nome!.isEmpty) return "Digite um nome!";
-                      return null;
-                    },
-                  ),
-                  TextFormField(
-                    controller: _idade,
-                    decoration: const InputDecoration(labelText: "Idade"),
-                    validator: (idade) {
-                      if (idade!.isEmpty) return "Digite um nome!";
-                      return null;
-                    },
-                  ),
-                  Divider(),
-                  ElevatedButton(
-                      onPressed: () async {
-                        if (_formkey.currentState!.validate()) {
-                          updatedCliente = Cliente(
-                              nome: _nome.text,
-                              idade: int.tryParse(_idade.text) ?? 0);
-                          await db.updateCliente(
-                              updatedCliente, widget.cliente.id!);
-                          _nome.clear();
-                          _idade.clear();
-                          setState(() {
-                            widget.cliente.nome = updatedCliente.nome;
-                            widget.cliente.idade = updatedCliente.idade;
-                          });
-                        }
-                        updatecliente;
-                      },
-                      child: const Text("Salvar"))
-                ],
-              ))),
+        padding: const EdgeInsets.all(24),
+        child: Form(
+          key: _formkey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: _nome,
+                decoration: const InputDecoration(labelText: "Nome"),
+                validator: (nome) {
+                  if (nome!.isEmpty) return "Digite um nome!";
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: _idade,
+                decoration: const InputDecoration(labelText: "Idade"),
+                validator: (idade) {
+                  if (idade!.isEmpty) return "Digite um nome!";
+                  return null;
+                },
+              ),
+              const Divider(),
+              ElevatedButton(
+                  onPressed: () async {
+                    if (_formkey.currentState!.validate()) {
+                      Cliente updatedCliente = Cliente(
+                          nome: _nome.text,
+                          idade: int.tryParse(_idade.text) ?? 0);
+
+                      await db.updateCliente(
+                          updatedCliente, widget.cliente.id!);
+                      setState(() {
+                        appBartitle = updatedCliente.nome;
+                        appbarcliente = updatedCliente;
+                      });
+                    }
+                    //Atualiza o nome na appBar
+                    //Atualiza a lista de clientes na homepage
+                    clienteprovider.getClientes();
+                  },
+                  child: const Text("Salvar"))
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite_estudo/helpers/db.dart';
-import 'package:sqflite_estudo/page/cliente_page.dart';
+import 'package:sqflite_estudo/models/cliente_model.dart';
 import 'package:sqflite_estudo/page/edit_cliente.dart';
 import 'package:sqflite_estudo/provider/appBarProvider.dart';
+
+Cliente? appbarcliente;
 
 Widget userAppBar(BuildContext context) {
   final DB db = DB.intance;
@@ -24,6 +26,7 @@ Widget userAppBar(BuildContext context) {
           icon: const Icon(Icons.delete)),
       IconButton(
           onPressed: () {
+            appBarprovider.setFalse();
             Navigator.push(
                 context,
                 MaterialPageRoute(

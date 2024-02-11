@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite_estudo/helpers/db.dart';
 import 'package:sqflite_estudo/models/cliente_model.dart';
-import '../page/cliente_page.dart';
+import 'package:sqflite_estudo/widgets/userAppBar.dart';
 import '../provider/appBarProvider.dart';
 
 class ClienteCard extends StatefulWidget {
