@@ -32,8 +32,15 @@ class DB {
   String get _cliente => '''
     CREATE TABLE cliente(
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      nome TEXT,
-      idade INT
+      nomeCompleto TEXT,
+      dataNasc TEXT,
+      celular TEXT,
+      email TEXT,
+      cep INTEGER,
+      logradouro TEXT,
+      numero INTEGER,
+      cidade TEXT,
+      observacao TEXT
     )
   ''';
 
@@ -64,7 +71,17 @@ class DB {
     final Database db = await database;
     db.update(
       "cliente",
-      {'nome': cliente.nome, 'idade': cliente.idade},
+      {
+        "nomeCompleto": cliente.nomeCompleto,
+        "dataNasc": cliente.dataNasc,
+        "celular": cliente.celular,
+        "email": cliente.email,
+        "cep": cliente.cep,
+        "logradouro": cliente.logradouro,
+        "numero": cliente.numero,
+        "cidade": cliente.cidade,
+        "observacao": cliente.observacao,
+      },
       where: "id = ?",
       whereArgs: [id],
     );

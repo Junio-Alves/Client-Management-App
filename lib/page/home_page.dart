@@ -19,11 +19,18 @@ class _HomePageState extends State<HomePage> {
     pc = PageController(initialPage: paginalAtual);
   }
 
+  setPaginaAtual(index) {
+    setState(() {
+      paginalAtual = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
         controller: pc,
+        onPageChanged: setPaginaAtual,
         children: const [
           ClientePage(),
           NovoCliente(),

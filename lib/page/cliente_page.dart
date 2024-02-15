@@ -40,12 +40,19 @@ class ClientePageState extends State<ClientePage> {
               return Consumer<ClienteProvider>(
                 builder:
                     (BuildContext context, providerClientes, Widget? child) {
-                  return ListView.builder(
-                      itemCount: providerClientes.cliente.length,
-                      itemBuilder: (context, index) {
-                        Cliente cliente = providerClientes.cliente[index];
-                        return ClienteCard(cliente: cliente);
-                      });
+                  return providerClientes.cliente.isEmpty
+                      ? const Center(
+                          child: Text(
+                            "Nenhum Cliente cadastrado!",
+                            style: TextStyle(fontSize: 25),
+                          ),
+                        )
+                      : ListView.builder(
+                          itemCount: providerClientes.cliente.length,
+                          itemBuilder: (context, index) {
+                            Cliente cliente = providerClientes.cliente[index];
+                            return ClienteCard(cliente: cliente);
+                          });
                 },
               );
             }
@@ -54,8 +61,7 @@ class ClientePageState extends State<ClientePage> {
   }
 
   appBarCliente(Cliente? appBarCliente) {
-    appbarcliente!.nome = appBarCliente!.nome;
-    appbarcliente!.idade = appbarcliente!.idade;
+    appbarcliente!.nomeCompleto = appBarCliente!.nomeCompleto;
   }
 
   defaultAppBar() {

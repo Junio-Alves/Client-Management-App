@@ -27,11 +27,9 @@ class _ClienteCardState extends State<ClienteCard> {
           padding: const EdgeInsets.only(top: 20, bottom: 20, left: 20),
           child: Row(
             children: [
-              const SizedBox(
-                height: 30,
-                child: Icon(
-                  Icons.person,
-                ),
+              const CircleAvatar(
+                backgroundImage: AssetImage("assets/profile/user.png"),
+                radius: 40,
               ),
               Expanded(
                   child: Container(
@@ -40,12 +38,12 @@ class _ClienteCardState extends State<ClienteCard> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      widget.cliente.nome,
+                      widget.cliente.nomeCompleto,
                       style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.w600),
                     ),
                     Text(
-                      "Idade: ${widget.cliente.idade}",
+                      "Idade: ${widget.cliente.id}",
                       style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.w600),
                     )

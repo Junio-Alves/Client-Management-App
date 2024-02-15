@@ -11,7 +11,7 @@ Widget userAppBar(BuildContext context) {
   final DB db = DB.intance;
   final appBarprovider = Provider.of<AppBarProvider>(context, listen: false);
   return AppBar(
-    title: Text(appbarcliente!.nome),
+    title: Text(appbarcliente!.nomeCompleto),
     leading: IconButton(
         onPressed: () {
           appBarprovider.setFalse();

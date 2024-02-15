@@ -1,23 +1,55 @@
 class Cliente {
   int? id;
-  String nome;
-  int idade;
+  String nomeCompleto;
+  String dataNasc;
+  String celular;
+  String email;
+  int cep;
+  String logradouro;
+  int numero;
+  String cidade;
+  String observacao;
 
-  Cliente({this.id, required this.nome, required this.idade});
+  Cliente({
+    this.id,
+    required this.nomeCompleto,
+    required this.dataNasc,
+    required this.celular,
+    required this.email,
+    required this.cep,
+    required this.logradouro,
+    required this.numero,
+    required this.cidade,
+    required this.observacao,
+  });
 
   Map<String, dynamic> toMap() {
     return {
       "id": id,
-      "nome": nome,
-      "idade": idade,
+      "nomeCompleto": nomeCompleto,
+      "dataNasc": dataNasc,
+      "celular": celular,
+      "email": email,
+      "cep": cep,
+      "logradouro": logradouro,
+      "numero": numero,
+      "cidade": cidade,
+      "observacao": observacao,
     };
   }
 
   factory Cliente.fromMap(Map<String, dynamic> map) {
     return Cliente(
       id: map['id'],
-      nome: map['nome'],
-      idade: map['idade'],
+      nomeCompleto: map['nomeCompleto'],
+      dataNasc: map['dataNasc'],
+      celular: map['celular'],
+      email: map['email'],
+      cep: map['cep'],
+      logradouro: map['logradouro'],
+      numero: map['numero'],
+      cidade: map['cidade'],
+      observacao: map['observacao'],
     );
   }
 }
