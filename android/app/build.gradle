@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.sqflite_estudo"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion localProperties.getProperty('flutter.compileSdkVersion').toInteger()
     ndkVersion flutter.ndkVersion
 
     compileOptions {
