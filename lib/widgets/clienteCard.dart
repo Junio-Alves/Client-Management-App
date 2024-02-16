@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite_estudo/helpers/db.dart';
 import 'package:sqflite_estudo/models/cliente_model.dart';
+import 'package:sqflite_estudo/pages/cliente_page.dart';
 import 'package:sqflite_estudo/widgets/userAppBar.dart';
 import '../provider/appBarProvider.dart';
 
@@ -22,7 +23,16 @@ class _ClienteCardState extends State<ClienteCard> {
       margin: const EdgeInsets.only(top: 12, left: 15, right: 15),
       elevation: 2,
       child: InkWell(
-        onLongPress: () {},
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => ClientePage(
+                cliente: widget.cliente,
+              ),
+            ),
+          );
+        },
         child: Padding(
           padding: const EdgeInsets.only(top: 20, bottom: 20, left: 20),
           child: Row(

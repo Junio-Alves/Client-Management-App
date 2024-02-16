@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite_estudo/helpers/db.dart';
 import 'package:sqflite_estudo/models/cliente_model.dart';
-import 'package:sqflite_estudo/page/edit_cliente.dart';
+import 'package:sqflite_estudo/pages/edit_cliente.dart';
 import 'package:sqflite_estudo/provider/appBarProvider.dart';
 
 Cliente? appbarcliente;

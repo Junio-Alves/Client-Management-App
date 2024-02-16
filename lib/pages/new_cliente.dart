@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite_estudo/widgets/popupimage.dart';
 import '../helpers/db.dart';
 import 'package:sqflite_estudo/models/cliente_model.dart';
 
@@ -30,21 +31,38 @@ class NovoCliente extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 30, bottom: 50),
-                  child: SizedBox(
-                    height: 150,
-                    child: Center(
-                      child: InkWell(
-                        onTap: () {},
-                        focusColor: Colors.transparent,
-                        child: Container(
-                          height: 150,
-                          width: 150,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              color: Colors.grey),
-                        ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Stack(
+                        children: [
+                          CircleAvatar(
+                            radius: 75,
+                            backgroundColor: Colors.grey[200],
+                            child: CircleAvatar(
+                              radius: 65,
+                              backgroundColor: Colors.grey[300],
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 5,
+                            right: 5,
+                            child: CircleAvatar(
+                              backgroundColor: Colors.grey[200],
+                              child: IconButton(
+                                onPressed: () {
+                                  popUpImage(context);
+                                },
+                                icon: Icon(
+                                  Icons.edit,
+                                  color: Colors.grey[400],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
+                    ],
                   ),
                 ),
                 const Text(

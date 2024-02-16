@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sqflite_estudo/page/cliente_page.dart';
-import 'package:sqflite_estudo/page/new_cliente.dart';
+import 'package:sqflite_estudo/pages/cliente_List_page.dart';
+import 'package:sqflite_estudo/pages/new_cliente.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
         controller: pc,
         onPageChanged: setPaginaAtual,
         children: const [
-          ClientePage(),
+          ClienteListPage(),
           NovoCliente(),
         ],
       ),

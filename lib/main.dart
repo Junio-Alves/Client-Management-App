@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sqflite_estudo/page/home_page.dart';
+import 'package:sqflite_estudo/pages/home_page.dart';
 import 'package:sqflite_estudo/provider/appBarProvider.dart';
 import 'package:sqflite_estudo/provider/cliente_provider.dart';
 

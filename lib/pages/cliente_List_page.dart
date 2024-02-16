@@ -7,14 +7,14 @@ import 'package:sqflite_estudo/provider/cliente_provider.dart';
 import 'package:sqflite_estudo/widgets/userAppBar.dart';
 import '../widgets/clienteCard.dart';
 
-class ClientePage extends StatefulWidget {
-  const ClientePage({super.key});
+class ClienteListPage extends StatefulWidget {
+  const ClienteListPage({super.key});
 
   @override
-  State<ClientePage> createState() => ClientePageState();
+  State<ClienteListPage> createState() => ClienteListPageState();
 }
 
-class ClientePageState extends State<ClientePage> {
+class ClienteListPageState extends State<ClienteListPage> {
   final DB db = DB.intance;
 
   @override
