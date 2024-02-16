@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:sqflite_estudo/models/cliente_model.dart';
 
@@ -12,6 +14,7 @@ class ClientePage extends StatefulWidget {
 class _ClientePageState extends State<ClientePage> {
   @override
   Widget build(BuildContext context) {
+    File imageFile = File(widget.cliente.imagePath);
     return Scaffold(
       appBar: AppBar(
         title: const Text("View Client"),
@@ -20,11 +23,11 @@ class _ClientePageState extends State<ClientePage> {
         children: [
           Column(
             children: [
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircleAvatar(
-                    backgroundImage: AssetImage("assets/profile/user.png"),
+                    backgroundImage: FileImage(imageFile),
                     radius: 100,
                   ),
                 ],

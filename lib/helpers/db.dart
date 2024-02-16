@@ -40,7 +40,8 @@ class DB {
       logradouro TEXT,
       numero INTEGER,
       cidade TEXT,
-      observacao TEXT
+      observacao TEXT,
+      imagePath TEXT
     )
   ''';
 
@@ -81,6 +82,7 @@ class DB {
         "numero": cliente.numero,
         "cidade": cliente.cidade,
         "observacao": cliente.observacao,
+        "imagePath": cliente.imagePath,
       },
       where: "id = ?",
       whereArgs: [id],

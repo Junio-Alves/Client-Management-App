@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite_estudo/helpers/db.dart';
@@ -18,6 +20,7 @@ class _ClienteCardState extends State<ClienteCard> {
   final DB db = DB.intance;
   @override
   Widget build(BuildContext context) {
+    File imageFile = File(widget.cliente.imagePath);
     final appBarprovider = Provider.of<AppBarProvider>(context, listen: false);
     return Card(
       margin: const EdgeInsets.only(top: 12, left: 15, right: 15),
@@ -34,12 +37,12 @@ class _ClienteCardState extends State<ClienteCard> {
           );
         },
         child: Padding(
-          padding: const EdgeInsets.only(top: 20, bottom: 20, left: 20),
+          padding: const EdgeInsets.only(top: 10, bottom: 10, left: 20),
           child: Row(
             children: [
-              const CircleAvatar(
-                backgroundImage: AssetImage("assets/profile/user.png"),
-                radius: 40,
+              CircleAvatar(
+                backgroundImage: FileImage(imageFile),
+                radius: 50,
               ),
               Expanded(
                   child: Container(

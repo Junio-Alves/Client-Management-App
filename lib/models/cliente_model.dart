@@ -9,6 +9,7 @@ class Cliente {
   int numero;
   String cidade;
   String observacao;
+  String imagePath;
 
   Cliente({
     this.id,
@@ -21,6 +22,7 @@ class Cliente {
     required this.numero,
     required this.cidade,
     required this.observacao,
+    required this.imagePath,
   });
 
   Map<String, dynamic> toMap() {
@@ -35,6 +37,7 @@ class Cliente {
       "numero": numero,
       "cidade": cidade,
       "observacao": observacao,
+      "imagePath": imagePath,
     };
   }
 
@@ -50,6 +53,7 @@ class Cliente {
       numero: map['numero'],
       cidade: map['cidade'],
       observacao: map['observacao'],
+      imagePath: map['imagePath'],
     );
   }
 }

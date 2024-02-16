@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite_estudo/helpers/db.dart';
@@ -46,6 +48,8 @@ class _EditClienteState extends State<EditCliente> {
     final clienteprovider =
         Provider.of<ClienteProvider>(context, listen: false);
     String appBartitle = widget.cliente.nomeCompleto;
+    File imageFile = File(widget.cliente.imagePath);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(appBartitle),
@@ -57,6 +61,32 @@ class _EditClienteState extends State<EditCliente> {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                Stack(
+                  children: [
+                    CircleAvatar(
+                      radius: 75,
+                      backgroundColor: Colors.grey[200],
+                      child: CircleAvatar(
+                          radius: 65,
+                          backgroundColor: Colors.grey[300],
+                          backgroundImage: FileImage(imageFile)),
+                    ),
+                    Positioned(
+                      bottom: 5,
+                      right: 5,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.grey[200],
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.edit,
+                            color: Colors.grey[400],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 const Text(
                   "Informações Pessoais:",
                   style: TextStyle(
@@ -128,6 +158,7 @@ class _EditClienteState extends State<EditCliente> {
                           numero: int.tryParse(_numero.text) ?? 0,
                           cidade: _cidade.text,
                           observacao: _observacao.text,
+                          imagePath: imageFile.path,
                         );
 
                         await db.updateCliente(
