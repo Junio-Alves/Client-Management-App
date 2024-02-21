@@ -48,7 +48,7 @@ class _ClienteCardState extends State<ClienteCard> {
                   child: Container(
                 margin: const EdgeInsets.only(left: 12),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       widget.cliente.nomeCompleto,
@@ -56,7 +56,7 @@ class _ClienteCardState extends State<ClienteCard> {
                           fontSize: 18, fontWeight: FontWeight.w600),
                     ),
                     Text(
-                      "Idade: ${widget.cliente.id}",
+                      "Numero: ${widget.cliente.celular}",
                       style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.w600),
                     )

@@ -66,7 +66,16 @@ class ClienteListPageState extends State<ClienteListPage> {
 
   defaultAppBar() {
     return AppBar(
-      title: const Text("Cliente"),
+      title: const Text(
+        "Clientes",
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          fontSize: 25,
+        ),
+      ),
+      backgroundColor: Colors.redAccent,
+      centerTitle: true,
     );
   }
 }

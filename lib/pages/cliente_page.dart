@@ -17,7 +17,13 @@ class _ClientePageState extends State<ClientePage> {
     File imageFile = File(widget.cliente.imagePath);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("View Client"),
+        title: const Text(
+          "Dados do cliente",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Colors.redAccent,
       ),
       body: Column(
         children: [
@@ -26,9 +32,12 @@ class _ClientePageState extends State<ClientePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircleAvatar(
-                    backgroundImage: FileImage(imageFile),
-                    radius: 100,
+                  Padding(
+                    padding: const EdgeInsets.all(24.0),
+                    child: CircleAvatar(
+                      backgroundImage: FileImage(imageFile),
+                      radius: 100,
+                    ),
                   ),
                 ],
               ),
@@ -43,56 +52,63 @@ class _ClientePageState extends State<ClientePage> {
               )
             ],
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "Dados Pessoais:",
-                style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold),
+          Card(
+            margin: const EdgeInsets.only(top: 12, left: 15, right: 15),
+            elevation: 2,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Dados Pessoais:",
+                    style: TextStyle(
+                        fontSize: 25,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "Data de Nascimento: ${widget.cliente.dataNasc}",
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  Text(
+                    "Celular: ${widget.cliente.celular}",
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  Text(
+                    "Email: ${widget.cliente.email}",
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  const Text(
+                    "Endereço:",
+                    style: TextStyle(
+                        fontSize: 25,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "CEP: ${widget.cliente.cep}",
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  Text(
+                    "Logradouro ${widget.cliente.logradouro}",
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  Text(
+                    "Nº: ${widget.cliente.numero}",
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  Text(
+                    "Cidade: ${widget.cliente.cidade}",
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  Text(
+                    "Observações: ${widget.cliente.observacao}",
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                ],
               ),
-              Text(
-                "Data de Nascimento: ${widget.cliente.dataNasc}",
-                style: const TextStyle(fontSize: 20),
-              ),
-              Text(
-                "Celular: ${widget.cliente.celular}",
-                style: const TextStyle(fontSize: 20),
-              ),
-              Text(
-                "Email: ${widget.cliente.email}",
-                style: const TextStyle(fontSize: 20),
-              ),
-              const Text(
-                "Endereço:",
-                style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold),
-              ),
-              Text(
-                "CEP: ${widget.cliente.cep}",
-                style: const TextStyle(fontSize: 20),
-              ),
-              Text(
-                "Logradouro ${widget.cliente.logradouro}",
-                style: const TextStyle(fontSize: 20),
-              ),
-              Text(
-                "Nº: ${widget.cliente.numero}",
-                style: const TextStyle(fontSize: 20),
-              ),
-              Text(
-                "Cidade: ${widget.cliente.cidade}",
-                style: const TextStyle(fontSize: 20),
-              ),
-              Text(
-                "Observações ${widget.cliente.observacao}",
-                style: const TextStyle(fontSize: 20),
-              ),
-            ],
+            ),
           )
         ],
       ),

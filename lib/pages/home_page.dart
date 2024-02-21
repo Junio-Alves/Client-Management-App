@@ -40,14 +40,26 @@ class _HomePageState extends State<HomePage> {
         currentIndex: paginalAtual,
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.people_outline_outlined), label: "Cliente"),
-          BottomNavigationBarItem(icon: Icon(Icons.add), label: "Novo Cliente"),
+            icon: Icon(
+              Icons.people_outline_outlined,
+              color: Colors.white,
+            ),
+            label: "Cliente",
+            backgroundColor: Colors.white,
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+              label: "Novo Cliente",
+              backgroundColor: Colors.white),
         ],
         onTap: (pagina) {
           pc.animateToPage(pagina,
               duration: const Duration(milliseconds: 400), curve: Curves.ease);
         },
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.redAccent,
       ),
     );
   }

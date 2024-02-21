@@ -29,6 +29,15 @@ class _NovoClienteState extends State<NovoCliente> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "Adicionar Novo Cliente",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Colors.redAccent,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(24),
         child: Form(
@@ -135,8 +144,12 @@ class _NovoClienteState extends State<NovoCliente> {
                   errorText: "Digite uma observação",
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.redAccent,
+                        ),
                         onPressed: () async {
                           if (_formkey.currentState!.validate()) {
                             Cliente novoCliente = Cliente(
@@ -168,7 +181,12 @@ class _NovoClienteState extends State<NovoCliente> {
                             });
                           }
                         },
-                        child: const Text("Salvar")),
+                        child: const Text(
+                          "Salvar",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        )),
                   ],
                 )
               ],
@@ -193,9 +211,6 @@ class _NovoClienteState extends State<NovoCliente> {
         controller: controller,
         decoration: InputDecoration(
           labelText: labelText,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
         ),
         validator: (validator) {
           if (validator!.isEmpty) return errorText;
