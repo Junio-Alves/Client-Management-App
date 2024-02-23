@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite_estudo/helpers/db.dart';
 import 'package:sqflite_estudo/models/cliente_model.dart';
+import 'package:sqflite_estudo/pages/new_cliente.dart';
 import 'package:sqflite_estudo/provider/appBarProvider.dart';
 import 'package:sqflite_estudo/provider/cliente_provider.dart';
 import 'package:sqflite_estudo/widgets/userAppBar.dart';
@@ -47,12 +48,45 @@ class ClienteListPageState extends State<ClienteListPage> {
                             style: TextStyle(fontSize: 25),
                           ),
                         )
-                      : ListView.builder(
-                          itemCount: providerClientes.cliente.length,
-                          itemBuilder: (context, index) {
-                            Cliente cliente = providerClientes.cliente[index];
-                            return ClienteCard(cliente: cliente);
-                          });
+                      : Column(
+                          children: [
+                            Expanded(
+                              child: ListView.builder(
+                                  itemCount: providerClientes.cliente.length,
+                                  itemBuilder: (context, index) {
+                                    Cliente cliente =
+                                        providerClientes.cliente[index];
+                                    return ClienteCard(cliente: cliente);
+                                  }),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: SizedBox(
+                                height: 70,
+                                width: 200,
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.redAccent),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const NovoCliente(),
+                                        ),
+                                      );
+                                    },
+                                    child: const Text(
+                                      "Adicionar cliente",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 17,
+                                      ),
+                                    )),
+                              ),
+                            )
+                          ],
+                        );
                 },
               );
             }

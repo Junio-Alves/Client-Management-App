@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite_estudo/pages/cliente_List_page.dart';
-import 'package:sqflite_estudo/pages/new_cliente.dart';
+import 'package:sqflite_estudo/pages/dashboard_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -32,34 +32,34 @@ class _HomePageState extends State<HomePage> {
         controller: pc,
         onPageChanged: setPaginaAtual,
         children: const [
+          DashBoard(),
           ClienteListPage(),
-          NovoCliente(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: paginalAtual,
         items: const [
           BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home,
+                color: Colors.black,
+              ),
+              label: "Home",
+              backgroundColor: Colors.black),
+          BottomNavigationBarItem(
             icon: Icon(
               Icons.people_outline_outlined,
-              color: Colors.white,
+              color: Colors.black,
             ),
             label: "Cliente",
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.black,
           ),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.add,
-                color: Colors.white,
-              ),
-              label: "Novo Cliente",
-              backgroundColor: Colors.white),
         ],
         onTap: (pagina) {
           pc.animateToPage(pagina,
               duration: const Duration(milliseconds: 400), curve: Curves.ease);
         },
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.white,
       ),
     );
   }

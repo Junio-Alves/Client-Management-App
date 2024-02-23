@@ -42,111 +42,128 @@ class _NovoClienteState extends State<NovoCliente> {
         padding: const EdgeInsets.all(24),
         child: Form(
           key: _formkey,
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 30, bottom: 50),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Stack(
-                        children: [
-                          CircleAvatar(
-                            radius: 75,
-                            backgroundColor: Colors.grey[200],
-                            child: CircleAvatar(
-                              radius: 65,
-                              backgroundColor: Colors.grey[300],
-                              backgroundImage: imageFile != null
-                                  ? FileImage(imageFile!)
-                                  : null,
-                            ),
-                          ),
-                          Positioned(
-                            bottom: 5,
-                            right: 5,
-                            child: CircleAvatar(
-                              backgroundColor: Colors.grey[200],
-                              child: IconButton(
-                                onPressed: () {
-                                  popUpImage(context);
-                                },
-                                icon: Icon(
-                                  Icons.edit,
-                                  color: Colors.grey[400],
-                                ),
+          child: Stack(
+            children: [
+              SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 30, bottom: 50),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Stack(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 75,
+                                    backgroundColor: Colors.grey[200],
+                                    child: CircleAvatar(
+                                      radius: 65,
+                                      backgroundColor: Colors.grey[300],
+                                      backgroundImage: imageFile != null
+                                          ? FileImage(imageFile!)
+                                          : null,
+                                    ),
+                                  ),
+                                  Positioned(
+                                    bottom: 5,
+                                    right: 5,
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.grey[200],
+                                      child: IconButton(
+                                        onPressed: () {
+                                          popUpImage(context);
+                                        },
+                                        icon: Icon(
+                                          Icons.edit,
+                                          color: Colors.grey[400],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                        const Text(
+                          "Informações Pessoais:",
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        textForm(
+                          controller: _nomeCompleto,
+                          labelText: "nome",
+                          errorText: "Digite um nome!",
+                        ),
+                        textForm(
+                          controller: _dataNasc,
+                          labelText: "Data de Nascimento",
+                          errorText: "Digite uma data de nascimento:",
+                        ),
+                        textForm(
+                          controller: _celular,
+                          labelText: "Celular",
+                          errorText: "Digite um numero de celular!",
+                        ),
+                        textForm(
+                          controller: _email,
+                          labelText: "Email",
+                          errorText: "Digite um email valido:",
+                        ),
+                        const Text(
+                          "Endereço:",
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        textForm(
+                          controller: _cep,
+                          labelText: "CEP",
+                          errorText: "Digite um Cep",
+                        ),
+                        textForm(
+                          controller: _logradouro,
+                          labelText: "Logradouro",
+                          errorText: "Digite um logradouro",
+                        ),
+                        textForm(
+                          controller: _numero,
+                          labelText: "N°",
+                          errorText: "Digite o numero da casa",
+                        ),
+                        textForm(
+                            controller: _cidade,
+                            labelText: "Cidade",
+                            errorText: "Digite uma cidade!"),
+                        textForm(
+                          controller: _observacao,
+                          labelText: "Observação",
+                          errorText: "Digite uma observação",
+                        ),
+                        const SizedBox(
+                          height: 100,
+                        )
+                      ],
+                    ),
+                  ],
                 ),
-                const Text(
-                  "Informações Pessoais:",
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold),
-                ),
-                textForm(
-                  controller: _nomeCompleto,
-                  labelText: "nome",
-                  errorText: "Digite um nome!",
-                ),
-                textForm(
-                  controller: _dataNasc,
-                  labelText: "Data de Nascimento",
-                  errorText: "Digite uma data de nascimento:",
-                ),
-                textForm(
-                  controller: _celular,
-                  labelText: "Celular",
-                  errorText: "Digite um numero de celular!",
-                ),
-                textForm(
-                  controller: _email,
-                  labelText: "Email",
-                  errorText: "Digite um email valido:",
-                ),
-                const Text(
-                  "Endereço:",
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold),
-                ),
-                textForm(
-                  controller: _cep,
-                  labelText: "CEP",
-                  errorText: "Digite um Cep",
-                ),
-                textForm(
-                  controller: _logradouro,
-                  labelText: "Logradouro",
-                  errorText: "Digite um logradouro",
-                ),
-                textForm(
-                  controller: _numero,
-                  labelText: "N°",
-                  errorText: "Digite o numero da casa",
-                ),
-                textForm(
-                    controller: _cidade,
-                    labelText: "Cidade",
-                    errorText: "Digite uma cidade!"),
-                textForm(
-                  controller: _observacao,
-                  labelText: "Observação",
-                  errorText: "Digite uma observação",
-                ),
-                Row(
+              ),
+              Positioned.fill(
+                top: 700,
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ElevatedButton(
+                    SizedBox(
+                      height: 70,
+                      width: 200,
+                      child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.redAccent,
                         ),
@@ -184,13 +201,16 @@ class _NovoClienteState extends State<NovoCliente> {
                         child: const Text(
                           "Salvar",
                           style: TextStyle(
+                            fontSize: 18,
                             color: Colors.white,
                           ),
-                        )),
+                        ),
+                      ),
+                    ),
                   ],
-                )
-              ],
-            ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
