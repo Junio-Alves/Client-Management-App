@@ -66,7 +66,13 @@ class ClienteListPageState extends State<ClienteListPage> {
                                 width: 200,
                                 child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.redAccent),
+                                      backgroundColor: Colors.redAccent,
+                                      shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(10),
+                                        ),
+                                      ),
+                                    ),
                                     onPressed: () {
                                       Navigator.push(
                                         context,
