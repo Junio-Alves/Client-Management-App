@@ -8,8 +8,7 @@ import 'package:sqflite_estudo/provider/cliente_provider.dart';
 import 'package:sqflite_estudo/widgets/userAppBar.dart';
 
 class EditCliente extends StatefulWidget {
-  final Cliente cliente;
-  const EditCliente({super.key, required this.cliente});
+  const EditCliente({super.key});
 
   @override
   State<EditCliente> createState() => _EditClienteState();
@@ -31,24 +30,26 @@ class _EditClienteState extends State<EditCliente> {
 
   @override
   void initState() {
+    final cliente = ModalRoute.of(context)!.settings.arguments as Cliente;
     super.initState();
-    _nomeCompleto.text = widget.cliente.nomeCompleto;
-    _dataNasc.text = widget.cliente.dataNasc;
-    _celular.text = widget.cliente.celular;
-    _email.text = widget.cliente.email;
-    _cep.text = widget.cliente.cep.toString();
-    _logradouro.text = widget.cliente.logradouro;
-    _numero.text = widget.cliente.numero.toString();
-    _cidade.text = widget.cliente.cidade;
-    _observacao.text = widget.cliente.observacao;
+    _nomeCompleto.text = cliente.nomeCompleto;
+    _dataNasc.text = cliente.dataNasc;
+    _celular.text = cliente.celular;
+    _email.text = cliente.email;
+    _cep.text = cliente.cep.toString();
+    _logradouro.text = cliente.logradouro;
+    _numero.text = cliente.numero.toString();
+    _cidade.text = cliente.cidade;
+    _observacao.text = cliente.observacao;
   }
 
   @override
   Widget build(BuildContext context) {
+    final cliente = ModalRoute.of(context)!.settings.arguments as Cliente;
     final clienteprovider =
         Provider.of<ClienteProvider>(context, listen: false);
-    String appBartitle = widget.cliente.nomeCompleto;
-    File imageFile = File(widget.cliente.imagePath);
+    String appBartitle = cliente.nomeCompleto;
+    File imageFile = File(cliente.imagePath);
 
     return Scaffold(
       appBar: AppBar(
@@ -161,8 +162,7 @@ class _EditClienteState extends State<EditCliente> {
                           imagePath: imageFile.path,
                         );
 
-                        await db.updateCliente(
-                            updatedCliente, widget.cliente.id!);
+                        await db.updateCliente(updatedCliente, cliente.id!);
                         setState(() {
                           appbarcliente = updatedCliente;
                         });

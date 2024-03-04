@@ -42,11 +42,43 @@ class ClienteListPageState extends State<ClienteListPage> {
                 builder:
                     (BuildContext context, providerClientes, Widget? child) {
                   return providerClientes.cliente.isEmpty
-                      ? const Center(
-                          child: Text(
-                            "Nenhum Cliente cadastrado!",
-                            style: TextStyle(fontSize: 25),
-                          ),
+                      ? Column(
+                          children: [
+                            const Center(
+                              child: Text(
+                                "Nenhum Cliente cadastrado!",
+                                style: TextStyle(fontSize: 25),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 600,
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.redAccent,
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10),
+                                  ),
+                                ),
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const NovoCliente(),
+                                  ),
+                                );
+                              },
+                              child: const Text(
+                                "Adicionar cliente",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ),
+                          ],
                         )
                       : Column(
                           children: [
@@ -65,30 +97,31 @@ class ClienteListPageState extends State<ClienteListPage> {
                                 height: 70,
                                 width: 200,
                                 child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.redAccent,
-                                      shape: const RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(10),
-                                        ),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.redAccent,
+                                    shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10),
                                       ),
                                     ),
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const NovoCliente(),
-                                        ),
-                                      );
-                                    },
-                                    child: const Text(
-                                      "Adicionar cliente",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 17,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const NovoCliente(),
                                       ),
-                                    )),
+                                    );
+                                  },
+                                  child: const Text(
+                                    "Adicionar cliente",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 17,
+                                    ),
+                                  ),
+                                ),
                               ),
                             )
                           ],

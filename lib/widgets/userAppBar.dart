@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite_estudo/helpers/db.dart';
 import 'package:sqflite_estudo/models/cliente_model.dart';
-import 'package:sqflite_estudo/pages/edit_cliente.dart';
 import 'package:sqflite_estudo/provider/appBarProvider.dart';
+import 'package:sqflite_estudo/utils/app_routes.dart';
 
 Cliente? appbarcliente;
 
 Widget userAppBar(BuildContext context) {
+  _selectEditClient(BuildContext context) {
+    Navigator.of(context)
+        .pushNamed(AppRoute.editClient, arguments: appbarcliente);
+  }
+
   final DB db = DB.intance;
   final appBarprovider = Provider.of<AppBarProvider>(context, listen: false);
   return AppBar(
@@ -27,10 +32,7 @@ Widget userAppBar(BuildContext context) {
       IconButton(
           onPressed: () {
             appBarprovider.setFalse();
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => EditCliente(cliente: appbarcliente!)));
+            _selectEditClient(context);
           },
           icon: const Icon(Icons.edit))
     ],

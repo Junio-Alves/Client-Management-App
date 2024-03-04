@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sqflite_estudo/pages/new_cliente.dart';
+
+import 'package:sqflite_estudo/utils/app_routes.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({super.key});
@@ -38,12 +39,7 @@ class _DashBoardState extends State<DashBoard> {
                     width: 350,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const NovoCliente(),
-                          ),
-                        );
+                        Navigator.of(context).pushNamed(AppRoute.newClient);
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.redAccent,
@@ -80,12 +76,7 @@ class _DashBoardState extends State<DashBoard> {
                 width: 350,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const NovoCliente(),
-                      ),
-                    );
+                    Navigator.of(context).pushNamed(AppRoute.newProduct);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.greenAccent,
