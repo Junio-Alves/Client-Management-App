@@ -30,8 +30,8 @@ class _EditClienteState extends State<EditCliente> {
 
   @override
   void initState() {
-    final cliente = ModalRoute.of(context)!.settings.arguments as Cliente;
     super.initState();
+    final cliente = appbarcliente!;
     _nomeCompleto.text = cliente.nomeCompleto;
     _dataNasc.text = cliente.dataNasc;
     _celular.text = cliente.celular;

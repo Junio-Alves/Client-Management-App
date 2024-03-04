@@ -8,7 +8,7 @@ import 'package:sqflite_estudo/utils/app_routes.dart';
 Cliente? appbarcliente;
 
 Widget userAppBar(BuildContext context) {
-  _selectEditClient(BuildContext context) {
+  void _selectEditClient(BuildContext context) {
     Navigator.of(context)
         .pushNamed(AppRoute.editClient, arguments: appbarcliente);
   }

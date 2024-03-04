@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sqflite_estudo/pages/cliente_List_page.dart';
 import 'package:sqflite_estudo/pages/dashboard_page.dart';
 import 'package:sqflite_estudo/pages/edit_cliente.dart';
-import 'package:sqflite_estudo/pages/home_page.dart';
+import 'package:sqflite_estudo/pages/tab_page.dart';
 import 'package:sqflite_estudo/pages/new_cliente.dart';
 import 'package:sqflite_estudo/pages/new_product.dart';
 import 'package:sqflite_estudo/provider/appBarProvider.dart';
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: {
-          AppRoute.home: (contexto) => const HomePage(),
+          AppRoute.home: (contexto) => const TabPage(),
           AppRoute.clientListPage: (contexto) => const ClienteListPage(),
           AppRoute.newClient: (contexto) => const NovoCliente(),
           AppRoute.editClient: (contexto) => const EditCliente(),

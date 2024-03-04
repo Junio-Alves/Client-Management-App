@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:sqflite_estudo/pages/cliente_List_page.dart';
 import 'package:sqflite_estudo/pages/dashboard_page.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class TabPage extends StatefulWidget {
+  const TabPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<TabPage> createState() => _TabPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _TabPageState extends State<TabPage> {
   int paginalAtual = 0;
   late PageController pc;
 
